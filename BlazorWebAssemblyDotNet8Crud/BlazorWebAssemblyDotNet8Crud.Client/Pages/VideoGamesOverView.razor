@@ -20,6 +20,7 @@ else
                 <th>Titulo</th>
                 <th>Produtora</th>
                 <th>Ano de Lançamento</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +31,10 @@ else
                     <td>@game.Title</td>
                     <td>@game.Publisher</td>
                     <td>@game.ReleaseYear</td>
-                    <td><button class="btn btn-primary" @onclick="@(()=>EditGame(@game.Id))">Edit</button></td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="@(()=>EditGame(@game.Id))">Edit</button>
+                        <button class="btn btn-danger" @onclick="@(()=>DeleteGame(@game.Id))">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -44,12 +48,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(500);
-
-        var result = await Http.GetFromJsonAsync<List<VideoGame>>("api/videogames");
-
-        if(result is not null)
-            videoGames = result;
+        await LoadGames();
     }
 
     void AddGame()
@@ -61,5 +60,18 @@ else
     {
         NavigationManager.NavigateTo($"edit-game/{id}");
 
+    }
+    async Task DeleteGame(int id)
+    {
+        var result = await Http.DeleteAsync($"api/videogames/{id}");
+        await LoadGames();
+    }
+
+    async Task LoadGames()
+    {
+        var result = await Http.GetFromJsonAsync<List<VideoGame>>("api/videogames");
+
+        if (result is not null)
+            videoGames = result;
     }
 }
