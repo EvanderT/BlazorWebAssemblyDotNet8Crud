@@ -6,12 +6,12 @@
 
 @if (Id == null)
 {
-    <h3>Add Game</h3>
+    <h3>Adicionar Jogo</h3>
 
 }
 else
 {
-    <h3>Edit @Game.Title</h3>
+    <h3>Editar @Game.Title</h3>
 
 }
 
@@ -28,7 +28,7 @@ else
         <label for="releaseYear">Release Year</label>
         <InputNumber id="releaseYear" @bind-Value="Game.ReleaseYear" class="form-control" />
     </div>
-    <button class="btn btn-primary" type="submit">Save</button>
+    <button class="btn btn-primary" type="submit">Salvar</button>
 </EditForm>
 
 @code {

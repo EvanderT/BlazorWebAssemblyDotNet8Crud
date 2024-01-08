@@ -32,8 +32,8 @@ else
                     <td>@game.Publisher</td>
                     <td>@game.ReleaseYear</td>
                     <td>
-                        <button class="btn btn-primary" @onclick="@(()=>EditGame(@game.Id))">Edit</button>
-                        <button class="btn btn-danger" @onclick="@(()=>DeleteGame(@game.Id))">Delete</button>
+                        <button class="btn btn-primary" @onclick="@(()=>EditGame(@game.Id))">Editar</button>
+                        <button class="btn btn-danger" @onclick="@(()=>DeleteGame(@game.Id))">Eliminar</button>
                     </td>
                 </tr>
             }
@@ -41,7 +41,7 @@ else
     </table>
 }
 
-<button class="btn btn-info" @onclick="AddGame">Add new Game</button>
+<button class="btn btn-info" @onclick="AddGame">Adicionar Novo Jogo</button>
 
 @code {
     private List<VideoGame> videoGames = new List<VideoGame>();
